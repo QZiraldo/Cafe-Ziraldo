@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CafeZiraldo.Models;
 
 namespace CafeZiraldo.Controllers
 {
@@ -15,9 +16,9 @@ namespace CafeZiraldo.Controllers
         }
 
 
-        public ActionResult ProcessSignUp(string UName, string Email)
+        public ActionResult ProcessSignUp(UserData data)
         {
-            ViewBag.Message = "Thanks " + UName+ " ("+Email+")";
+            ViewBag.Message = "Thanks " + data.Uname+ " ("+data.Email+")";
             return View("Index");
             // return Redirect("https://www.google.com");
         }
