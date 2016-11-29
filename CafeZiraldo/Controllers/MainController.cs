@@ -10,13 +10,19 @@ namespace CafeZiraldo.Controllers
     public class MainController : Controller
     {
         // GET: Main
-        public ActionResult Index() 
+        public ActionResult Index()
+        {
+            
+            ViewBag.ProductList = GetProductList();
+
+            return View();
+        }
+
+        private static List<Product> GetProductList()
         {
             CafeZiraldoDBEntities dbContext = new CafeZiraldoDBEntities();
 
-           List<Product> productList = dbContext.Products.ToList();
-
-            return View();
+           return dbContext.Products.ToList();
         }
 
         public ActionResult Order(string product)
@@ -43,6 +49,7 @@ namespace CafeZiraldo.Controllers
             }
 
             ViewBag.ShoppingCart=shoppingCart.Values.ToList();
+            ViewBag.ProductList = GetProductList();
             return View("Index");
         }
 

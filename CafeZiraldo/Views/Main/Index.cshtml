@@ -147,6 +147,18 @@ Layout=null;
         </div>
         <div class="cl">&nbsp;</div>
       </section>
+        <table border="1">
+            @foreach (var item in ViewBag.ProductList)
+            {
+                <tr><td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>
+                    <a href=" /Main/Order?Product=@item.Name">Add to Cart</a>
+                    </td></tr>
+            }
+
+        </table>
+
       <!-- end of cols -->
       <!-- content -->
       <div class="content">
