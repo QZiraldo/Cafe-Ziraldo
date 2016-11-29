@@ -10,8 +10,12 @@ namespace CafeZiraldo.Controllers
     public class MainController : Controller
     {
         // GET: Main
-        public ActionResult Index()
+        public ActionResult Index() 
         {
+            CafeZiraldoDBEntities dbContext = new CafeZiraldoDBEntities();
+
+           List<Product> productList = dbContext.Products.ToList();
+
             return View();
         }
 

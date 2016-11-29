@@ -10,25 +10,21 @@
 namespace CafeZiraldo.Models
 {
     using System;
-    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     
-    public partial class Product
+    public partial class CafeZiraldoDBEntities : DbContext
     {
-        public Product(string name, double price, int quantity)
+        public CafeZiraldoDBEntities()
+            : base("name=CafeZiraldoDBEntities")
         {
-            Name = name;
-            Price = price;
-            Quantity = quantity.ToString();
         }
-
-        public Product()
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            throw new UnintentionalCodeFirstException();
         }
-
-
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string Quantity { get; set; }
+    
+        public virtual DbSet<Product> Products { get; set; }
     }
 }
