@@ -127,16 +127,16 @@ Layout=null;
           <h3>Fantastic Donuts </h3>
           <img src="@Url.Content("~/Content/")css/images/cols-img.png" alt="" class="alignleft">
           <div class="cnt">
-            <p>Lorem ipsum dolor sit amet, con<br>
-              sectetur adipiscing elit. Cras molestie condimentum conse am leom.</p>
-            <a href="#" class="dot">Order Donuts</a> </div>
+            <p>Delightful Donuts<br>
+              Try our delicious deep-fried creations with a variety of topping combinations</p>
+            <a href="Order?product=Donuts" class="dot">Order Donuts</a> </div>
         </div>
         <div class="col">
           <h3>Delicious Cupcakes</h3>
           <img src="@Url.Content("~/Content/")css/images/cols-img2.png" alt="" class="alignleft">
           <div class="cnt">
-            <p>Ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie condimentum conse am leo libert.</p>
-            <a href="#" class="dot">Order Cupcakes</a> </div>
+            <p>Individually frosted confectionary creations, made with the finest ingredients and topped with exotic flavor combinations!</p>
+            <a href="Order?product=Cupcakes" class="dot">Order Cupcakes</a> </div>
         </div>
         <div class="col">
           <h3>Address &amp; Location</h3>
@@ -163,7 +163,27 @@ Layout=null;
       <!-- sidebar -->
       <aside class="sidebar">
         <div class="widget">
-          <div class="facebook-social"> <img src="@Url.Content("~/Content/")css/images/facebook-img.png" alt=""> </div>
+          <div class="facebook-social">
+              <table border="1">
+                <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+            </tr>
+                  
+                  
+                  @if (ViewBag.ShoppingCart != null)
+    { foreach (var item in ViewBag.ShoppingCart)
+        {
+            <tr>  <td> @item.Name</td>
+                  <td> @item.Price</td>
+                  <td> @item.Quantity</td></tr>
+
+                      }
+                      
+                  }
+        </table>
+          </div>
         </div>
       </aside>
       <!-- end of sidebar -->

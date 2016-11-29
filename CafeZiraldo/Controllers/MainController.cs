@@ -15,7 +15,34 @@ namespace CafeZiraldo.Controllers
             return View();
         }
 
+        public ActionResult Order(string product)
+        {
+           if (Session["shoppingCart"] == null)
+            {
+                Dictionary<string, Product> tempSC = new
+                    Dictionary<string, Product>();
 
+                Session["shoppingCart"] = tempSC;
+            }
+            Dictionary<string, Product> shoppingCart =
+                   (Dictionary<string, Product>)Session["shoppingCart"];
+
+
+            if (!shoppingCart.ContainsKey(product)) //first time adding product
+            {
+                shoppingCart.Add(product, new Product(product, 1, 1));
+            }
+
+            else
+            {
+                shoppingCart[product].Quantity += 1;
+            }
+
+            ViewBag.ShoppingCart=shoppingCart.Values.ToList();
+            return View("Index");
+        }
+
+        
         public ActionResult ProcessSignUp(UserData data)
         {
             ViewBag.Message = "Thanks " + data.Uname+ " ("+data.Email+")";
