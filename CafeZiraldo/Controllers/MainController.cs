@@ -18,6 +18,52 @@ namespace CafeZiraldo.Controllers
             return View();
         }
 
+        public ActionResult Admin()
+        {
+            ViewBag.ProductList = GetProductList();
+            return View();
+
+
+        }
+
+        public ActionResult Delete(string product)
+        {
+
+            CafeZiraldoDBEntities dbContext = new CafeZiraldoDBEntities();
+
+            Product toDelete = dbContext.Products.Find(product);
+
+            dbContext.Products.Remove(toDelete);
+
+            dbContext.SaveChanges();
+
+            ViewBag.ProductList = GetProductList();
+            return View("Admin");
+
+             
+        }
+
+        public ActionResult  AddProduct()
+        {
+
+
+            return View();
+        }
+
+        public ActionResult InsertProduct(Product p)
+        {
+            CafeZiraldoDBEntities dbContext = new CafeZiraldoDBEntities();
+
+                dbContext.Products.Add(p);
+
+            dbContext.SaveChanges();
+
+            ViewBag.ProductList = GetProductList();
+
+            return View("Admin");
+        }
+
+
         private static List<Product> GetProductList()
         {
             CafeZiraldoDBEntities dbContext = new CafeZiraldoDBEntities();
